@@ -11,12 +11,11 @@ import (
 	"github.com/markbates/goth/providers/bitbucket"
 	"github.com/markbates/goth/providers/github"
 	"github.com/markbates/goth/providers/gitlab"
-
-	"./dotenv"
 )
 
 var (
-	host = "localhost:3000"
+	host     = "localhost:3000"
+	bindAddr = "127.0.0.1:3000"
 )
 
 const (
@@ -105,9 +104,11 @@ func handleSuccess(res http.ResponseWriter, req *http.Request) {
 }
 
 func init() {
-	dotenv.File(".env")
 	if hostEnv, ok := os.LookupEnv("HOST"); ok {
 		host = hostEnv
+	}
+	if bindEnv, ok := os.LookupEnv("BIND"); ok {
+		bindAddr = bindEnv
 	}
 	var (
 		gitlabProvider goth.Provider
@@ -150,6 +151,6 @@ func main() {
 	//
 	http.Handle("/", router)
 	//
-	fmt.Printf("Started running on %s\n", host)
-	fmt.Println(http.ListenAndServe(host, nil))
+	fmt.Printf("Started running on %s for %s\n", bindAddr, host)
+	fmt.Println(http.ListenAndServe(bindAddr, nil))
 }
