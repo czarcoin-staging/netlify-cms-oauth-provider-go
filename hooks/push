@@ -1,4 +1,5 @@
 #!/bin/sh
 
-docker tag "${IMAGE_NAME}" "${DOCKER_REPO}:$(util/version)"
+tag="${DOCKER_REPO}:$(util/version)"
+docker tag "${IMAGE_NAME}" "$tag"
 docker push "$tag"
