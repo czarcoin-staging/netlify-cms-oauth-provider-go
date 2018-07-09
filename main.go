@@ -56,7 +56,7 @@ func handleMain(res http.ResponseWriter, req *http.Request) {
 
 // GET /auth Page  redirecting after provider get param
 func handleAuth(res http.ResponseWriter, req *http.Request) {
-	url := fmt.Sprintf("%s/auth/%s", host, req.FormValue("provider"))
+	url := fmt.Sprintf("https://%s/auth/%s", host, req.FormValue("provider"))
 	fmt.Printf("redirect to %s\n", url)
 	http.Redirect(res, req, url, http.StatusTemporaryRedirect)
 }
