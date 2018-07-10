@@ -84,7 +84,7 @@ func handleCallbackProvider(res http.ResponseWriter, req *http.Request) {
 	} else {
 		fmt.Printf("Logged in as %s user: %s (%s)\n", user.Provider, user.Email, user.AccessToken)
 		status = "success"
-		result = fmt.Sprintf(`{"token":"%s", "provider":"%s"}`, user.AccessToken, user.Provider)
+		result = fmt.Sprintf(`JSON.stringify({"token":"%s", "provider":"%s"})`, user.AccessToken, user.Provider)
 	}
 	res.Header().Set("Content-Type", "text/html; charset=utf-8")
 	res.WriteHeader(http.StatusOK)
