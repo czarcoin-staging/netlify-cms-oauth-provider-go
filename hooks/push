@@ -15,7 +15,7 @@ version(){
 	git fetch --unshallow
 
 	# Determine the last time VERSION was changed in a commit.
-	last_commit=$(git log -n 1 --pretty=format:%h -- ../VERSION)
+	last_commit=$(git log -n 1 --pretty=format:%h -- VERSION)
 
 	# This can happen if VERSION hasn't been checked in yet. In this case,
 	# we are at the VERSION in the version file itself.
@@ -28,7 +28,7 @@ version(){
 	patch_level=$(git rev-list "${last_commit}.." --count)
 
 	# And create the final version.
-	base_version=$(<../VERSION)
+	base_version=$(<VERSION)
 	if [[ $base_version =~ ([0-9]+[.][0-9]+[.])([0-9]+)([-].*)? ]]; then
 		if [[ ${BASH_REMATCH[2]} != 0 ]]; then
 			echo 'WARNING: Patch level in VERSION file is not 0 and is being replaced.' &1>2
