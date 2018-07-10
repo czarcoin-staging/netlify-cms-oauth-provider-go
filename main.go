@@ -19,7 +19,7 @@ var (
 )
 
 const (
-	script = `<!DOCTYPE html><html><head><script>
+	script = `<!DOCTYPE html><html><body>%s<script>
   if (!window.opener) {
     window.opener = {
       postMessage: function(action, origin) {
@@ -44,7 +44,7 @@ const (
       "*"
     );
   })("%s", "%s", %s)
-  </script></head><body></body></html>`
+  </script></body></html>`
 )
 
 // GET /
@@ -88,7 +88,7 @@ func handleCallbackProvider(res http.ResponseWriter, req *http.Request) {
 	}
 	res.Header().Set("Content-Type", "text/html; charset=utf-8")
 	res.WriteHeader(http.StatusOK)
-	res.Write([]byte(fmt.Sprintf(script, status, provider, result)))
+	res.Write([]byte(fmt.Sprintf(script, status, status, provider, result)))
 }
 
 // GET /refresh
