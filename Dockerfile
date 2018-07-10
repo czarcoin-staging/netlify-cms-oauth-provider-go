@@ -20,5 +20,6 @@ ENV HOST=127.0.0.1:3000 \
     GITLAB_KEY= \
     GITLAB_SECRET= \
     SESSION_SECRET=
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 COPY --from=builder /app /app
