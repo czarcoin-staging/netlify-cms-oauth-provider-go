@@ -131,6 +131,7 @@ func init() {
 		github.New(
 			os.Getenv("GITHUB_KEY"), os.Getenv("GITHUB_SECRET"),
 			fmt.Sprintf("https://%s/callback/github", host),
+			"repo",
 		),
 		bitbucket.New(
 			os.Getenv("BITBUCKET_KEY"), os.Getenv("BITBUCKET_SECRET"),
