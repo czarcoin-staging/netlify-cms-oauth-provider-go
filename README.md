@@ -37,6 +37,6 @@ You also need to add `base_url` to the backend section of your netlify-cms's con
 backend:
   name: github
   repo: user/repo   # Path to your Github repository
-  branch: master    # Branch to update
+  branch: main    # Branch to update
   base_url: https://your.server.com # Path to ext auth provider
 ```
